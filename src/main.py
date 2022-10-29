@@ -98,6 +98,7 @@ if __name__ == '__main__':
     if validresponse(response):
         cookies = json.loads(response)['data']
         options = Options()
+        options.add_argument('--start-maximized')
         driver = Chrome(options=options)
         driver.get("https://yemeksepeti.com")
         for x in cookies:
