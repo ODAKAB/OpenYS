@@ -60,7 +60,7 @@ def writeresponse(accname: str, response: str):
         pass
     file = open('openys_cookies/' + accname, 'w+')
     file.write(response)
-    print(accname + ' kaydedildi.')
+    print('    ' + accname + ' kaydedildi.')
 
 
 def readresponse(accname: str) -> str:
@@ -72,7 +72,7 @@ def readresponse(accname: str) -> str:
         file = open('openys_cookies/' + accname, 'r+')
         return str(file.read())
     except FileNotFoundError:
-        print(accname + ' bulunamadı.')
+        print('    ' + accname + ' bulunamadı.')
         return ''
 
 
@@ -82,8 +82,12 @@ def validresponse(response: str) -> bool:
         if jresp['status'] == 'true':
             for x in jresp['data']:
                 pass
+        else:
+            print('    Token geçersiz.')
+            return False
         return True
     except:
+        print('    Veri tanımlanamadı.')
         return False
 
 
@@ -111,4 +115,6 @@ if __name__ == '__main__':
                 writeresponse(accname, response)
             else:
                 print('    Hesaba isim vermediğiniz için kaydedilmedi.')
-    input('    Afiyet olsun.')
+        input('    Afiyet olsun, kapatmak için ENTER ya da çarpı tuşuna basın.')
+    else:
+        input('    Kapatmak için ENTER ya da çarpı tuşuna basın.')
